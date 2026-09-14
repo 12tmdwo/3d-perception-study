@@ -123,7 +123,6 @@
 3. 효과가 부족하면 **작업 공간에 ArUco 마커**를 놓고 위치를 구한다.
 4. 그래도 부족하면 **실시간을 포기**하고 스페이스로 사진을 찍는 방식으로 바꾼다.
 
-### 진단 도구 (`~/scan_debug`)
-- `record_session.py`: 기준 사진과 두 카메라 영상을 녹화
-- `replay_eval.py`: 녹화를 재생하며 겹 어긋남을 재고, 위·옆·앞에서 본 그림을 저장
-  - 비교 옵션: `--icp`, `--fixed-ref`, `--da3-k`
+### 목표
+1. Isaacsim or gazebo 사용하여 실제 카메라로 추출한 point cloud를 재생하고 6D pose estimation 실행
+2. 특정 물건을 카메라로 찍어서 Isaacsim에서 에셋 제작 및 학습 데이터 제작.
