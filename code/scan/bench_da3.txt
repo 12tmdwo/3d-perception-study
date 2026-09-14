@@ -1,0 +1,48 @@
+torch 2.6.0+cu124 | NVIDIA GeForce GTX 1650 with Max-Q Design | 정밀도 바꿔치기 검사 통과
+
+--- DA3-SMALL fp32: 장수 늘리기 (res 504) ---
+DA3-SMALL       fp32    504   1장 |     117 ±    2 ms |    117 ms/장 | 최대    257 MiB  dtype=float32
+  모양 검사: depth (2, 378, 504), processed (2, 378, 504, 3), 크기일치=True, cx/W=0.50, 기준사진 회전=0.040°
+DA3-SMALL       fp32    504   2장 |     217 ±    8 ms |    108 ms/장 | 최대    414 MiB  dtype=float32 유한값=True
+DA3-SMALL       fp32    504   3장 |     357 ±   11 ms |    119 ms/장 | 최대    552 MiB  dtype=float32
+DA3-SMALL       fp32    504   4장 |     472 ±   19 ms |    118 ms/장 | 최대    688 MiB  dtype=float32
+DA3-SMALL       fp32    504   8장 |    1072 ±   41 ms |    134 ms/장 | 최대   1227 MiB  dtype=float32
+DA3-SMALL       fp32    504  16장 |    2750 ±   15 ms |    172 ms/장 | 최대   1474 MiB  dtype=float32
+DA3-SMALL       fp32    504  32장 |    7877 ±  143 ms |    246 ms/장 | 최대   1965 MiB  dtype=float32
+DA3-SMALL       fp32    504  64장 |   24760 ±  330 ms |    387 ms/장 | 최대   2761 MiB  dtype=float32
+DA3-SMALL       fp32    392   2장 |     150 ±    4 ms |     75 ms/장 | 최대    398 MiB  dtype=float32
+DA3-SMALL       fp32    280   2장 |      94 ±    1 ms |     47 ms/장 | 최대    320 MiB  dtype=float32
+DA3-SMALL ray   fp32    504   2장 |     412 ±   14 ms |    206 ms/장 | 최대   1732 MiB  dtype=float32
+
+--- DA3-SMALL bf16: 장수 늘리기 (res 504) ---
+DA3-SMALL       bf16    504   1장 |     165 ±    2 ms |    165 ms/장 | 최대    395 MiB  dtype=bfloat16
+DA3-SMALL       bf16    504   2장 |     331 ±   11 ms |    165 ms/장 | 최대    463 MiB  dtype=bfloat16 유한값=True fp32대비_깊이차=0.266%
+DA3-SMALL       bf16    504   3장 |     541 ±   19 ms |    180 ms/장 | 최대    730 MiB  dtype=bfloat16
+DA3-SMALL       bf16    504   4장 |     762 ±   19 ms |    191 ms/장 | 최대   1103 MiB  dtype=bfloat16
+8장에서 중단: CUDA out of memory. Tried to allocate 348.00 MiB. GPU 0 has a total capacity of 3.63 GiB of which 69.06 MiB is free. Inc
+DA3-SMALL       bf16    392   2장 |     204 ±   23 ms |    102 ms/장 | 최대    359 MiB  dtype=bfloat16
+DA3-SMALL       bf16    280   2장 |     108 ±    2 ms |     54 ms/장 | 최대    282 MiB  dtype=bfloat16
+DA3-SMALL ray   bf16    504   2장 |     507 ±   14 ms |    253 ms/장 | 최대   1689 MiB  dtype=bfloat16
+
+--- DA3-SMALL fp16: 장수 늘리기 (res 504) ---
+DA3-SMALL       fp16    504   1장 |     238 ±    7 ms |    238 ms/장 | 최대    310 MiB  dtype=float16
+DA3-SMALL       fp16    504   2장 |     465 ±   12 ms |    232 ms/장 | 최대    464 MiB  dtype=float16 유한값=True fp32대비_깊이차=0.068%
+DA3-SMALL       fp16    504   3장 |     723 ±   21 ms |    241 ms/장 | 최대    599 MiB  dtype=float16
+DA3-SMALL       fp16    504   4장 |     982 ±   59 ms |    246 ms/장 | 최대    735 MiB  dtype=float16
+DA3-SMALL       fp16    504   8장 |    2213 ±   17 ms |    277 ms/장 | 최대   1098 MiB  dtype=float16
+DA3-SMALL       fp16    504  16장 |    5669 ±   46 ms |    354 ms/장 | 최대   1341 MiB  dtype=float16
+DA3-SMALL       fp16    504  32장 |   16235 ±  893 ms |    507 ms/장 | 최대   1832 MiB  dtype=float16
+64장에서 중단: CUDA out of memory. Tried to allocate 188.00 MiB. GPU 0 has a total capacity of 3.63 GiB of which 162.69 MiB is free. In
+DA3-SMALL       fp16    392   2장 |     271 ±    5 ms |    135 ms/장 | 최대    400 MiB  dtype=float16
+DA3-SMALL       fp16    280   2장 |     156 ±    4 ms |     78 ms/장 | 최대    323 MiB  dtype=float16
+DA3-SMALL ray   fp16    504   2장 |     648 ±   37 ms |    324 ms/장 | 최대   1731 MiB  dtype=float16
+
+--- YOLO26n-seg (imgsz 640, 메모리 칸은 DA3-SMALL 포함) ---
+YOLO26n-seg     fp32    640   1장 |      33 ±    1 ms |     33 ms/장 | 최대    231 MiB  클래스 80종, 검출 3개
+YOLO26n-seg     fp16    640   1장 |      39 ±    2 ms |     39 ms/장 | 최대    226 MiB  클래스 80종, 검출 3개
+DA3-SMALL + YOLO 함께: torch 할당 207 MiB, 그래픽카드 전체 사용 1040 / 3716 MiB
+
+--- DA3METRIC-LARGE 1장 ---
+DA3METRIC-LARGE fp32    504   1장 |     666 ±   11 ms |    666 ms/장 | 최대   1575 MiB  출력 중앙값 0.380 유한값=True
+DA3METRIC-LARGE bf16    504   1장 |     900 ±    7 ms |    900 ms/장 | 최대   2108 MiB  출력 중앙값 0.381 유한값=True
+DA3METRIC-LARGE fp16    504   1장 |    1907 ±   68 ms |   1907 ms/장 | 최대   2108 MiB  출력 중앙값 0.380 유한값=True
